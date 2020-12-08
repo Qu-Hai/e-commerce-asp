@@ -1,0 +1,9 @@
+.container {
+  margin-top: 70px;
+}
+.MuiFab-primary {
+  background-color: transparent !important;
+}
+.MuiFab-root {
+  box-shadow: none !important;
+}
