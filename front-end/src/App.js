@@ -1,13 +1,11 @@
-import React from "react";
+import React, { Suspense, useState } from "react";
 import { BrowserRouter as Router, Switch, Route } from "react-router-dom";
-import MainMenu from "./components/Menu/MainMenu";
-import AppBar from "./components/AppBar/AppBar";
-import CssBaseline from "@material-ui/core/CssBaseline";
-import Container from "@material-ui/core/Container";
-import Home from "./pages/Home";
+import UserLayout from "./layouts/UserLayout";
+import AdminLayout from "./layouts/AdminLayout";
+import Login from "./pages/Login";
+import { PATH } from "./constants/path";
 import { createMuiTheme, ThemeProvider } from "@material-ui/core/styles";
 import "./App.css";
-
 function App() {
   const theme = createMuiTheme({
     palette: {
@@ -19,18 +17,16 @@ function App() {
       },
     },
   });
-
+  const [role, setRole] = useState(false);
   return (
     <ThemeProvider theme={theme}>
       <Router>
-        <CssBaseline />
-        <AppBar />
-        <Container className="container">
-          <MainMenu />
+        <Suspense fallback={<div>Loading...</div>}>
           <Switch>
-            <Route exact path="/" component={Home} />
+            <Route exact path={PATH.LOGIN} component={Login} />
+            {role ? <UserLayout /> : <AdminLayout />}
           </Switch>
-        </Container>
+        </Suspense>
       </Router>
     </ThemeProvider>
   );

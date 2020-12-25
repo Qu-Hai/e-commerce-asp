@@ -7,3 +7,6 @@
 .MuiFab-root {
   box-shadow: none !important;
 }
+.scroll::-webkit-scrollbar {
+  display: none;
+}

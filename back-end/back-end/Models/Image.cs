@@ -11,8 +11,15 @@ namespace back_end.Models
     {
         [Key]
         public int Id { get; set; }
+        [Column(TypeName ="nvarchar(100)")]
+        public string Name { get; set; }
         public int ProductId { get; set; }
         [ForeignKey("ProductId")]
-        public virtual Product Product { get; set; }
+        public Product Product { get; set; }
+        public bool State { get; set; }
+        public Image()
+        {
+            State = true;
+        }
     }
 }
